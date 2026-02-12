@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLtoImages - Free Online HTML to Image Converter</title>
+    <meta name="description" content="Convert HTML to Image instantly at htmltoimages.com. The best free tool to turn code snippets into high-quality PNG, JPG, or WebP images.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-panel: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            --radius-lg: 24px;
+            --radius-md: 12px;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05), transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05), transparent 20%);
+            background-attachment: fixed;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1200px; padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color); border-radius: 100px;
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; gap: 10px; color: var(--text-main); }
+        .logo i { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; color: var(--text-muted); cursor: pointer; }
+        .nav-links a:hover { color: #3b82f6; }
+
+        /* Hero */
+        .hero { text-align: center; padding: 180px 20px 80px; }
+        .hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 24px; color: var(--text-main); letter-spacing: -2px; line-height: 1.1; }
+        .gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; }
+
+        /* Tools Grid */
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 40px auto; padding: 0 20px; scroll-margin-top: 100px; }
+        .tool-card { 
+            background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); 
+            padding: 30px; text-align: left; transition: 0.3s; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; gap: 15px; text-decoration: none;
+        }
+        .tool-card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.15); }
+        .tool-icon { width: 50px; height: 50px; background: #eff6ff; color: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .tool-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+        .tool-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+        .tool-arrow { margin-top: auto; font-weight: 600; color: #3b82f6; display: flex; align-items: center; gap: 5px; }
+
+        /* Sections */
+        .section-container { max-width: 1000px; margin: 80px auto; padding: 0 20px; scroll-margin-top: 120px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; color: var(--text-main); }
+        .section-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+        /* How it works */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .step { text-align: center; }
+        .step-num { width: 40px; height: 40px; background: var(--text-main); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 20px; }
+        .step h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .step p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* FAQ */
+        details { background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 16px; overflow: hidden; transition: 0.3s; }
+        details[open] { border-color: #3b82f6; }
+        summary { padding: 20px 24px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; transition: 0.3s; color: var(--text-muted); }
+        details[open] summary::after { transform: rotate(180deg); color: #3b82f6; }
+        details p { padding: 0 24px 24px; color: var(--text-muted); line-height: 1.7; margin-top: -5px; }
+
+        /* Footer */
+        .footer { border-top: 1px solid var(--border-color); background: #f1f5f9; padding: 60px 20px; margin-top: 100px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; color: var(--text-main); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: var(--text-muted); font-size: 0.95rem; }
+        .footer-col a:hover { color: #3b82f6; }
+        .copyright { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid #cbd5e1; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .tool-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo"><i class="fas fa-cube"></i> HTMLtoImages</a>
+        <div class="nav-links">
+            <a href="#tools">Tools</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#faq">FAQ</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Free Online <br> <span class="gradient-text">HTML to Image</span> Converter</h1>
+        <p>Welcome to <strong>htmltoimages.com</strong>. The easiest way to convert your HTML code and CSS into high-quality images directly in your browser.</p>
+        
+        <div id="tools" class="tool-grid">
+            <a href="html-to-png.html" class="tool-card">
+                <div class="tool-icon"><i class="fas fa-image"></i></div>
+                <h3>HTML to PNG</h3>
+                <p>Convert code to transparent PNGs. Perfect for mockups and social sharing.</p>
+                <div class="tool-arrow">Convert to PNG <i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="html-to-jpg.html" class="tool-card">
+                <div class="tool-icon"><i class="fas fa-photo-film"></i></div>
+                <h3>HTML to JPG</h3>
+                <p>Optimized JPEG conversion for smaller file sizes and web use.</p>
+                <div class="tool-arrow">Convert to JPG <i class="fas fa-arrow-right"></i></div>
+            </a>
+            <a href="html-to-webp.html" class="tool-card">
+                <div class="tool-icon"><i class="fas fa-bolt"></i></div>
+                <h3>HTML to WebP</h3>
+                <p>Next-gen WebP format for superior performance and quality.</p>
+                <div class="tool-arrow">Convert to WebP <i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </header>
+
+    <section id="how-it-works" class="section-container">
+        <div class="section-header">
+            <h2>How it Works</h2>
+            <p>Generate images from code in 3 simple steps.</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Select Format</h3>
+                <p>Choose between PNG, JPG, or WebP converters above based on your needs.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Paste Code</h3>
+                <p>Enter your HTML and CSS into our live editor. Preview changes instantly.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Download</h3>
+                <p>Click download to save your high-resolution image locally.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-container">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about htmltoimages.com</p>
+        </div>
+        <details>
+            <summary>Is htmltoimages.com completely free?</summary>
+            <p>Yes! The HTML to Image converter at <strong>htmltoimages.com</strong> is 100% free to use. There are no hidden fees, subscriptions, or watermarks on your generated images.</p>
+        </details>
+        <details>
+            <summary>Is my code secure?</summary>
+            <p>Absolutely. <strong>htmltoimages.com</strong> uses client-side rendering technology. Your HTML and CSS code is processed entirely within your browser and is never sent to our servers.</p>
+        </details>
+        <details>
+            <summary>Can I convert complex CSS layouts?</summary>
+            <p>Yes, the <strong>htmltoimages.com</strong> engine supports most modern CSS features including Flexbox, Grid, and custom fonts, ensuring your image looks exactly like the code.</p>
+        </details>
+        <details>
+            <summary>Why use this instead of a screenshot?</summary>
+            <p>Screenshots often include messy background artifacts, cursors, or low-resolution text. <strong>htmltoimages.com</strong> renders a clean, scalable canvas specifically designed for code presentation.</p>
+        </details>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 15px;"><i class="fas fa-cube"></i> HTMLtoImages</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    The #1 tool for developers to turn code into beautiful images. Fast, free, and secure.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Converters</h4>
+                <ul>
+                    <li><a href="html-to-png.html">HTML to PNG</a></li>
+                    <li><a href="html-to-jpg.html">HTML to JPG</a></li>
+                    <li><a href="html-to-webp.html">HTML to WebP</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 htmltoimages.com. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.body.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else if (href && href.endsWith('.html')) {
+                    e.preventDefault();
+                    window.parent.postMessage({ type: 'NAVIGATE', path: href }, '*');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
